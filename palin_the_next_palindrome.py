@@ -2,20 +2,22 @@ import re
 t = input()
 for i  in range(t):
     num = input()
-    snum = str(num)
-    if len(snum) == 1:
+    if num < 9:
         print num+1
+        continue
+    snum = str(num)
+    le = len(snum)
     if snum == snum[::-1]:
         if not re.match(r"[0-8]", snum):
             print num+2
             continue
-        if len(snum)%2 == 0:
-            place = str(long(snum[:len(snum)/2])+1)
+        if le%2 == 0:
+            place = str(long(snum[:le/2])+1)
             print place+place[::-1]
             continue
         else:
-            left = snum[:len(snum)/2]
-            right = snum[len(snum)/2:]
+            left = snum[:le/2]
+            right = snum[le/2:]
             if right[0] == '9':
                 rplace = str(long(right[::-1])+1)[::-1]
                 left = list(left)
@@ -30,9 +32,9 @@ for i  in range(t):
                 print left+rplace
                 continue
     else:
-        if len(snum)%2 == 0:
-             place = str(long(snum[:len(snum)/2])+1)
+        if le%2 == 0:
+             place = str(long(snum[:le/2])+1)
              print place + place[::-1]
         else:
-             place = str(long(snum[:len(snum)/2+1])+1)
+             place = str(long(snum[:le/2+1])+1)
              print place + place[1::-1]
